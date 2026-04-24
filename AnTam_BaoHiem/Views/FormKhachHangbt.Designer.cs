@@ -66,7 +66,7 @@
             this.btnGuiYeuCau.UseVisualStyleBackColor = true;
             this.btnGuiYeuCau.Click += new System.EventHandler(this.btnGuiYeuCau_Click);
             // 
-            // FormKhachHang
+            // FormKhachHangbt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -75,8 +75,8 @@
             this.Controls.Add(this.txtSoTien);
             this.Controls.Add(this.txtLyDo);
             this.Controls.Add(this.cboHopDong);
-            this.Name = "FormKhachHang";
-            this.Text = "FormKhachHang";
+            this.Name = "FormKhachHangbt";
+            this.Text = "Form Bồi Thường";
             this.ResumeLayout(false);
             this.PerformLayout();
 

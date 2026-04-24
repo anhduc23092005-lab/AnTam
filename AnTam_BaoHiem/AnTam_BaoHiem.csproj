@@ -54,17 +54,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormAdmin.cs">
+    <Compile Include="Views\FormAdminbt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormAdmin.Designer.cs">
-      <DependentUpon>FormAdmin.cs</DependentUpon>
+    <Compile Include="Views\FormAdminbt.Designer.cs">
+      <DependentUpon>FormAdminbt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormKhachHang.cs">
+    <Compile Include="Views\FormKhachHangbt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormKhachHang.Designer.cs">
-      <DependentUpon>FormKhachHang.cs</DependentUpon>
+    <Compile Include="Views\FormKhachHangbt.Designer.cs">
+      <DependentUpon>FormKhachHangbt.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Models\BoiThuong.cs" />
@@ -74,11 +74,11 @@
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\FormAdmin.resx">
-      <DependentUpon>FormAdmin.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormAdminbt.resx">
+      <DependentUpon>FormAdminbt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormKhachHang.resx">
-      <DependentUpon>FormKhachHang.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormKhachHangbt.resx">
+      <DependentUpon>FormKhachHangbt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
