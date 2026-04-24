@@ -12,11 +12,11 @@ using AnTam_BaoHiem.Models;
 
 namespace AnTam_BaoHiem
 {
-    public partial class FormKhachHang : Form
+    public partial class FormKhachHangbt : Form
     {
         BoiThuongController _controller = new BoiThuongController();
         int _maKH_HienTai = 1; // Giả sử ID khách hàng đăng nhập là 1
-        public FormKhachHang()
+        public FormKhachHangbt()
         {
             InitializeComponent();
             LoadHopDong();
@@ -58,7 +58,7 @@ namespace AnTam_BaoHiem
         }
         public int MaKH_HienTai;
 
-        public FormKhachHang(int maKH) // Thêm tham số nhận vào
+        public FormKhachHangbt(int maKH) // Thêm tham số nhận vào
         {
             InitializeComponent();
             this.MaKH_HienTai = maKH;

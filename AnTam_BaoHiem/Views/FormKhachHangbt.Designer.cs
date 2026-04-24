@@ -1,6 +1,6 @@
 ﻿namespace AnTam_BaoHiem
 {
-    partial class FormKhachHang
+    partial class FormKhachHangbt
     {
         /// <summary>
         /// Required designer variable.
