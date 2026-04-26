@@ -18,6 +18,7 @@ namespace AnTam_BaoHiem
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Views.frmAdminMain());
 
+            Application.Run(new FormAdminbt());
         }
     }
 }
