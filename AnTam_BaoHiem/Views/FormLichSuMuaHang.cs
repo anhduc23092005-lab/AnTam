@@ -31,5 +31,30 @@ namespace AnTam_BaoHiem.Views
         {
 
         }
+
+        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
