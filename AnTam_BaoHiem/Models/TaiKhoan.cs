@@ -8,8 +8,9 @@ using System.Xml.Linq;
 namespace AnTam_BaoHiem.Models
 {
     public class TaiKhoan
-{
-    public string TenDangNhap { get; set; }
-    public string MatKhau { get; set; }
-    public string Quyen { get; set; } // Admin hoặc User
+    {
+        public string TenDangNhap { get; set; }
+        public string MatKhau { get; set; }
+        public string Quyen { get; set; } // Admin hoặc User
+    }
 }

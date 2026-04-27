@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnTam_BaoHiem.Views; // Phải có dòng này để nó thấy các Form trong thư mục Views
 
 namespace AnTam_BaoHiem
 {
-    internal static class Program
+    static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAdminbt());
+
+            // Chạy form Quản lý bảo hiểm đầu tiên
+           // Application.Run(new frmQuanLyBaoHiem());
+            Application.Run(new frmXemBaoHiem());
+            
         }
     }
 }
