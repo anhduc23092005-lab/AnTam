@@ -136,6 +136,9 @@
     <EmbeddedResource Include="Views\FormLichSuMuaHang.resx">
       <DependentUpon>FormLichSuMuaHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormQuanLyHopDongMuaBaoHiem.resx">
+      <DependentUpon>FormQuanLyHopDongMuaBaoHiem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmAdminMain.resx">
       <DependentUpon>frmAdminMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +167,9 @@
     <None Include="Resources\money-removebg-preview.png" />
     <None Include="Resources\image_2026-04-26_224455110-removebg-preview.png" />
     <None Include="Resources\clock-removebg-preview.png" />
+    <None Include="Resources\box1-removebg-preview.png" />
+    <None Include="Resources\pending-removebg-preview.png" />
+    <None Include="Resources\170417-200-removebg-preview.png" />
     <Content Include="TaoDatabase_AnTam.sql" />
   </ItemGroup>
   <ItemGroup />

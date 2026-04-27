@@ -56,5 +56,10 @@ namespace AnTam_BaoHiem.Views
         {
 
         }
+
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -63,6 +63,26 @@ namespace AnTam_BaoHiem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _170417_200_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("170417-200-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap box1_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("box1-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clock_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("clock-removebg-preview", resourceCulture);
@@ -86,6 +106,16 @@ namespace AnTam_BaoHiem.Properties {
         internal static System.Drawing.Bitmap money_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("money-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pending_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("pending-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
