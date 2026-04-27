@@ -58,7 +58,7 @@ namespace AnTam_BaoHiem.Views
             ButtonOff();
             btnthanhtoan.FillColor = Color.FromArgb(50, 100, 201);
             btnthanhtoan.FillColor2 = Color.FromArgb(144, 117, 203);
-            TitleLable.Text = btnthanhtoan.Text;
+          
             OpenChildForm(new frmThongKeDoanhThu());
         }
             
@@ -67,8 +67,8 @@ namespace AnTam_BaoHiem.Views
             ButtonOff();
             btnnguoilaodong.FillColor = Color.FromArgb(50, 100, 201);
             btnnguoilaodong.FillColor2 = Color.FromArgb(144, 117, 203);
-            TitleLable.Text = btnnguoilaodong.Text;
-            OpenChildForm(new frmQuanLyGoiBaoHiem());
+            
+          
         }
 
         private void btnbaohiem_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace AnTam_BaoHiem.Views
             ButtonOff();
             btnbaohiem.FillColor = Color.FromArgb(50, 100, 201);
             btnbaohiem.FillColor2 = Color.FromArgb(144, 117, 203);
-            TitleLable.Text = btnbaohiem.Text;
+            
         }
 
         private void btntaikhoan_Click(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace AnTam_BaoHiem.Views
             ButtonOff();
             btntaikhoan.FillColor = Color.FromArgb(50, 100, 201);
             btntaikhoan.FillColor2 = Color.FromArgb(144, 117, 203);
-            TitleLable.Text = btntaikhoan.Text;
+            
         }
 
         private void btndangxuat_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace AnTam_BaoHiem.Views
             ButtonOff();
             btndangxuat.FillColor = Color.FromArgb(50, 100, 201);
             btndangxuat.FillColor2 = Color.FromArgb(144, 117, 203);
-            TitleLable.Text = btndangxuat.Text;
+            
         }
 
         private void ButtonOff()
@@ -147,6 +147,11 @@ namespace AnTam_BaoHiem.Views
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

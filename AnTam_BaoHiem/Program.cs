@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnTam_BaoHiem.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +15,9 @@ namespace AnTam_BaoHiem
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Views.frmAdminMain());
-
-            Application.Run(new FormAdminbt());
+             Application.Run(new AnTam_BaoHiem.Views.frmAdminMain());
+            // Thay số 1 đầu tiên thành số 2 (Vì ông aNHDUC có MaKH = 2)
+            Application.Run(new AnTam_BaoHiem.Views.frmThanhToanKhachHang(2, 1));
         }
     }
 }
