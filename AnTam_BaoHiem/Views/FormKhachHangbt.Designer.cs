@@ -1,4 +1,4 @@
-﻿namespace AnTam_BaoHiem
+﻿namespace AnTam_BaoHiem.Views
 {
     partial class FormKhachHangbt
     {
@@ -28,55 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cboHopDong = new System.Windows.Forms.ComboBox();
-            this.txtLyDo = new System.Windows.Forms.TextBox();
-            this.txtSoTien = new System.Windows.Forms.TextBox();
+            this.txtMaHD = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rtxtNoiDung = new System.Windows.Forms.RichTextBox();
             this.btnGuiYeuCau = new System.Windows.Forms.Button();
+            this.btnChonAnh = new System.Windows.Forms.Button();
+            this.dgvYeuCauKH = new System.Windows.Forms.DataGridView();
+            this.picMinhChung = new System.Windows.Forms.PictureBox();
+            this.colTenGoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvYeuCauKH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinhChung)).BeginInit();
             this.SuspendLayout();
             // 
-            // cboHopDong
+            // txtMaHD
             // 
-            this.cboHopDong.FormattingEnabled = true;
-            this.cboHopDong.Location = new System.Drawing.Point(240, 84);
-            this.cboHopDong.Name = "cboHopDong";
-            this.cboHopDong.Size = new System.Drawing.Size(121, 28);
-            this.cboHopDong.TabIndex = 2;
+            this.txtMaHD.Location = new System.Drawing.Point(152, 42);
+            this.txtMaHD.Name = "txtMaHD";
+            this.txtMaHD.Size = new System.Drawing.Size(100, 26);
+            this.txtMaHD.TabIndex = 0;
             // 
-            // txtLyDo
+            // label1
             // 
-            this.txtLyDo.Location = new System.Drawing.Point(240, 144);
-            this.txtLyDo.Name = "txtLyDo";
-            this.txtLyDo.Size = new System.Drawing.Size(100, 26);
-            this.txtLyDo.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(44, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "ma hop dong";
             // 
-            // txtSoTien
+            // rtxtNoiDung
             // 
-            this.txtSoTien.Location = new System.Drawing.Point(240, 194);
-            this.txtSoTien.Name = "txtSoTien";
-            this.txtSoTien.Size = new System.Drawing.Size(100, 26);
-            this.txtSoTien.TabIndex = 4;
+            this.rtxtNoiDung.Location = new System.Drawing.Point(152, 74);
+            this.rtxtNoiDung.Name = "rtxtNoiDung";
+            this.rtxtNoiDung.Size = new System.Drawing.Size(100, 96);
+            this.rtxtNoiDung.TabIndex = 2;
+            this.rtxtNoiDung.Text = "";
             // 
             // btnGuiYeuCau
             // 
-            this.btnGuiYeuCau.Location = new System.Drawing.Point(240, 247);
+            this.btnGuiYeuCau.Location = new System.Drawing.Point(137, 237);
             this.btnGuiYeuCau.Name = "btnGuiYeuCau";
             this.btnGuiYeuCau.Size = new System.Drawing.Size(75, 23);
-            this.btnGuiYeuCau.TabIndex = 5;
-            this.btnGuiYeuCau.Text = "Gui";
+            this.btnGuiYeuCau.TabIndex = 3;
+            this.btnGuiYeuCau.Text = "submit";
             this.btnGuiYeuCau.UseVisualStyleBackColor = true;
             this.btnGuiYeuCau.Click += new System.EventHandler(this.btnGuiYeuCau_Click);
+            // 
+            // btnChonAnh
+            // 
+            this.btnChonAnh.Location = new System.Drawing.Point(152, 188);
+            this.btnChonAnh.Name = "btnChonAnh";
+            this.btnChonAnh.Size = new System.Drawing.Size(123, 43);
+            this.btnChonAnh.TabIndex = 4;
+            this.btnChonAnh.Text = "chon anh";
+            this.btnChonAnh.UseVisualStyleBackColor = true;
+            this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
+            // 
+            // dgvYeuCauKH
+            // 
+            this.dgvYeuCauKH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvYeuCauKH.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colTenGoi});
+            this.dgvYeuCauKH.Location = new System.Drawing.Point(12, 304);
+            this.dgvYeuCauKH.Name = "dgvYeuCauKH";
+            this.dgvYeuCauKH.RowHeadersWidth = 62;
+            this.dgvYeuCauKH.RowTemplate.Height = 28;
+            this.dgvYeuCauKH.Size = new System.Drawing.Size(1239, 150);
+            this.dgvYeuCauKH.TabIndex = 5;
+            // 
+            // picMinhChung
+            // 
+            this.picMinhChung.Location = new System.Drawing.Point(436, 26);
+            this.picMinhChung.Name = "picMinhChung";
+            this.picMinhChung.Size = new System.Drawing.Size(316, 144);
+            this.picMinhChung.TabIndex = 6;
+            this.picMinhChung.TabStop = false;
+            // 
+            // colTenGoi
+            // 
+            this.colTenGoi.DataPropertyName = "TenGoi";
+            this.colTenGoi.HeaderText = "Tên Bảo Hiểm";
+            this.colTenGoi.MinimumWidth = 8;
+            this.colTenGoi.Name = "colTenGoi";
+            this.colTenGoi.Width = 150;
             // 
             // FormKhachHangbt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1263, 450);
+            this.Controls.Add(this.picMinhChung);
+            this.Controls.Add(this.dgvYeuCauKH);
+            this.Controls.Add(this.btnChonAnh);
             this.Controls.Add(this.btnGuiYeuCau);
-            this.Controls.Add(this.txtSoTien);
-            this.Controls.Add(this.txtLyDo);
-            this.Controls.Add(this.cboHopDong);
+            this.Controls.Add(this.rtxtNoiDung);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtMaHD);
             this.Name = "FormKhachHangbt";
-            this.Text = "Form Bồi Thường";
+            this.Text = "FormKhachHangbt";
+            this.Load += new System.EventHandler(this.FormKhachHangbt_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvYeuCauKH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinhChung)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,9 +136,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cboHopDong;
-        private System.Windows.Forms.TextBox txtLyDo;
-        private System.Windows.Forms.TextBox txtSoTien;
+        private System.Windows.Forms.TextBox txtMaHD;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox rtxtNoiDung;
         private System.Windows.Forms.Button btnGuiYeuCau;
+        private System.Windows.Forms.Button btnChonAnh;
+        private System.Windows.Forms.DataGridView dgvYeuCauKH;
+        private System.Windows.Forms.PictureBox picMinhChung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTenGoi;
     }
 }
