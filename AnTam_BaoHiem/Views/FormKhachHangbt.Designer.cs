@@ -34,8 +34,9 @@
             this.btnGuiYeuCau = new System.Windows.Forms.Button();
             this.btnChonAnh = new System.Windows.Forms.Button();
             this.dgvYeuCauKH = new System.Windows.Forms.DataGridView();
-            this.picMinhChung = new System.Windows.Forms.PictureBox();
             this.colTenGoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picMinhChung = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvYeuCauKH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinhChung)).BeginInit();
             this.SuspendLayout();
@@ -52,9 +53,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(44, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.Size = new System.Drawing.Size(108, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "ma hop dong";
+            this.label1.Text = "Mã Hợp Đồng";
             // 
             // rtxtNoiDung
             // 
@@ -68,19 +69,19 @@
             // 
             this.btnGuiYeuCau.Location = new System.Drawing.Point(137, 237);
             this.btnGuiYeuCau.Name = "btnGuiYeuCau";
-            this.btnGuiYeuCau.Size = new System.Drawing.Size(75, 23);
+            this.btnGuiYeuCau.Size = new System.Drawing.Size(101, 33);
             this.btnGuiYeuCau.TabIndex = 3;
-            this.btnGuiYeuCau.Text = "submit";
+            this.btnGuiYeuCau.Text = "Gửi";
             this.btnGuiYeuCau.UseVisualStyleBackColor = true;
             this.btnGuiYeuCau.Click += new System.EventHandler(this.btnGuiYeuCau_Click);
             // 
             // btnChonAnh
             // 
-            this.btnChonAnh.Location = new System.Drawing.Point(152, 188);
+            this.btnChonAnh.Location = new System.Drawing.Point(436, 190);
             this.btnChonAnh.Name = "btnChonAnh";
             this.btnChonAnh.Size = new System.Drawing.Size(123, 43);
             this.btnChonAnh.TabIndex = 4;
-            this.btnChonAnh.Text = "chon anh";
+            this.btnChonAnh.Text = "Chọn ảnh";
             this.btnChonAnh.UseVisualStyleBackColor = true;
             this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
             // 
@@ -96,14 +97,6 @@
             this.dgvYeuCauKH.Size = new System.Drawing.Size(1239, 150);
             this.dgvYeuCauKH.TabIndex = 5;
             // 
-            // picMinhChung
-            // 
-            this.picMinhChung.Location = new System.Drawing.Point(436, 26);
-            this.picMinhChung.Name = "picMinhChung";
-            this.picMinhChung.Size = new System.Drawing.Size(316, 144);
-            this.picMinhChung.TabIndex = 6;
-            this.picMinhChung.TabStop = false;
-            // 
             // colTenGoi
             // 
             this.colTenGoi.DataPropertyName = "TenGoi";
@@ -112,11 +105,29 @@
             this.colTenGoi.Name = "colTenGoi";
             this.colTenGoi.Width = 150;
             // 
+            // picMinhChung
+            // 
+            this.picMinhChung.Location = new System.Drawing.Point(436, 26);
+            this.picMinhChung.Name = "picMinhChung";
+            this.picMinhChung.Size = new System.Drawing.Size(316, 144);
+            this.picMinhChung.TabIndex = 6;
+            this.picMinhChung.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(44, 77);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 20);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "nhập lý do";
+            // 
             // FormKhachHangbt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1263, 450);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.picMinhChung);
             this.Controls.Add(this.dgvYeuCauKH);
             this.Controls.Add(this.btnChonAnh);
@@ -144,5 +155,6 @@
         private System.Windows.Forms.DataGridView dgvYeuCauKH;
         private System.Windows.Forms.PictureBox picMinhChung;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenGoi;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -39,6 +39,7 @@
             this.btnDuyet = new System.Windows.Forms.Button();
             this.btnTuChoi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdmin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAnhAdmin)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +52,7 @@
             "Chờ duyệt",
             "Đã duyệt",
             "Từ chối"});
-            this.cboTrangThaiTimKiem.Location = new System.Drawing.Point(12, 274);
+            this.cboTrangThaiTimKiem.Location = new System.Drawing.Point(21, 384);
             this.cboTrangThaiTimKiem.Name = "cboTrangThaiTimKiem";
             this.cboTrangThaiTimKiem.Size = new System.Drawing.Size(121, 28);
             this.cboTrangThaiTimKiem.TabIndex = 0;
@@ -62,7 +63,7 @@
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(88, 38);
             this.btnTimKiem.TabIndex = 1;
-            this.btnTimKiem.Text = "tim kiem";
+            this.btnTimKiem.Text = "tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
@@ -98,7 +99,7 @@
             // 
             // rtxtChiTiet
             // 
-            this.rtxtChiTiet.Location = new System.Drawing.Point(349, 274);
+            this.rtxtChiTiet.Location = new System.Drawing.Point(342, 324);
             this.rtxtChiTiet.Name = "rtxtChiTiet";
             this.rtxtChiTiet.Size = new System.Drawing.Size(100, 96);
             this.rtxtChiTiet.TabIndex = 5;
@@ -106,22 +107,22 @@
             // 
             // picAnhAdmin
             // 
-            this.picAnhAdmin.Location = new System.Drawing.Point(498, 309);
+            this.picAnhAdmin.Location = new System.Drawing.Point(498, 266);
             this.picAnhAdmin.Name = "picAnhAdmin";
-            this.picAnhAdmin.Size = new System.Drawing.Size(100, 50);
+            this.picAnhAdmin.Size = new System.Drawing.Size(147, 154);
             this.picAnhAdmin.TabIndex = 6;
             this.picAnhAdmin.TabStop = false;
             // 
             // txtLyDoTuChoi
             // 
-            this.txtLyDoTuChoi.Location = new System.Drawing.Point(730, 289);
+            this.txtLyDoTuChoi.Location = new System.Drawing.Point(1085, 271);
             this.txtLyDoTuChoi.Name = "txtLyDoTuChoi";
             this.txtLyDoTuChoi.Size = new System.Drawing.Size(100, 26);
             this.txtLyDoTuChoi.TabIndex = 7;
             // 
             // btnDuyet
             // 
-            this.btnDuyet.Location = new System.Drawing.Point(654, 347);
+            this.btnDuyet.Location = new System.Drawing.Point(1085, 313);
             this.btnDuyet.Name = "btnDuyet";
             this.btnDuyet.Size = new System.Drawing.Size(100, 49);
             this.btnDuyet.TabIndex = 8;
@@ -131,7 +132,7 @@
             // 
             // btnTuChoi
             // 
-            this.btnTuChoi.Location = new System.Drawing.Point(654, 402);
+            this.btnTuChoi.Location = new System.Drawing.Point(1085, 384);
             this.btnTuChoi.Name = "btnTuChoi";
             this.btnTuChoi.Size = new System.Drawing.Size(110, 36);
             this.btnTuChoi.TabIndex = 9;
@@ -142,18 +143,28 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(665, 295);
+            this.label3.Location = new System.Drawing.Point(1002, 274);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "Lý Do";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(351, 274);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "lý do yêu cầu";
+            // 
             // FormAdminbt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnTuChoi);
             this.Controls.Add(this.btnDuyet);
@@ -187,5 +198,6 @@
         private System.Windows.Forms.Button btnTuChoi;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenGoi;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
     }
 }
