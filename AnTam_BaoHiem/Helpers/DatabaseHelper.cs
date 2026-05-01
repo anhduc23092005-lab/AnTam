@@ -29,5 +29,19 @@ namespace AnTam_BaoHiem.Helpers
                 return false;
             }
         }
+
+       
+        public static DataTable GetData(string query)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = GetConnection())
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    da.Fill(dt);
+                }
+            }
+            return dt;
+        }
     }
 }

@@ -22,7 +22,12 @@ namespace AnTam_BaoHiem.Controllers
             return dt;
         }
 
-        // //Thắng thêm: Hàm tìm kiếm theo Mã và Tên kết hợp
+        public DataTable LayDanhSachGoiBaoHiem()
+        {
+            string query = "SELECT * FROM GoiBaoHiem";
+            return DatabaseHelper.GetData(query);
+        }
+
         public DataTable TimKiemTheoMaVaTen(string maGoi, string tenGoi)
         {
             DataTable dt = new DataTable();
@@ -55,8 +60,7 @@ namespace AnTam_BaoHiem.Controllers
                     return cmd.ExecuteNonQuery() > 0;
                 }
                 catch (System.Data.SqlClient.SqlException ex)
-                {
-                    // Mã lỗi 2627 là mã lỗi vi phạm khóa chính (Primary Key) trong SQL
+                { 
                     if (ex.Number == 2627)
                     {
                         System.Windows.Forms.MessageBox.Show("Mã gói này đã tồn tại rồi! Vui lòng nhập mã khác hoặc nhấn Sửa để cập nhật nhé.", "Trùng Mã", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
@@ -67,7 +71,7 @@ namespace AnTam_BaoHiem.Controllers
                     }
                     return false;
                 }
-       
+
             }
         }
 
@@ -136,7 +140,6 @@ namespace AnTam_BaoHiem.Controllers
                 else if (c.HasChildren) ClearForm(c.Controls);
             }
         }
-        // Hàm lưu thông tin mua bảo hiểm của khách hàng
         public bool DangKyMua(string maGoi, string hoTen, string sdt, string diaChi, string email)
         {
             try
@@ -144,7 +147,7 @@ namespace AnTam_BaoHiem.Controllers
                 using (System.Data.SqlClient.SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    // Giả sử tên bảng trong SQL của bạn là HopDongBaoHiem
+                    
                     string sql = "INSERT INTO HopDongBaoHiem (MaGoi, HoTenKhach, SoDienThoai, DiaChi, Email, NgayMua) " +
                                  "VALUES (@MaGoi, @HoTen, @SDT, @DiaChi, @Email, GETDATE())";
                     System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sql, conn);
@@ -160,7 +163,6 @@ namespace AnTam_BaoHiem.Controllers
             }
             catch (Exception ex)
             {
-                // Nếu bảng HopDongBaoHiem của bạn có tên khác hoặc thiếu cột, nó sẽ báo lỗi ở đây
                 System.Windows.Forms.MessageBox.Show("Lỗi kết nối CSDL: " + ex.Message);
                 return false;
             }
