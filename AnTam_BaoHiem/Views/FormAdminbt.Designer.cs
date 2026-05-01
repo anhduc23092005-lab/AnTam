@@ -1,6 +1,6 @@
-﻿namespace AnTam_BaoHiem
+﻿namespace AnTam_BaoHiem.Views
 {
-    partial class FormAdmin
+    partial class FormAdminbt
     {
         /// <summary>
         /// Required designer variable.
@@ -28,59 +28,164 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvBoiThuong = new System.Windows.Forms.DataGridView();
-            this.cboLocLoaiBH = new System.Windows.Forms.ComboBox();
+            this.cboTrangThaiTimKiem = new System.Windows.Forms.ComboBox();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.dgvAdmin = new System.Windows.Forms.DataGridView();
+            this.colTenGoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblMaYeuCau = new System.Windows.Forms.Label();
+            this.rtxtChiTiet = new System.Windows.Forms.RichTextBox();
+            this.picAnhAdmin = new System.Windows.Forms.PictureBox();
+            this.txtLyDoTuChoi = new System.Windows.Forms.TextBox();
             this.btnDuyet = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBoiThuong)).BeginInit();
+            this.btnTuChoi = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAnhAdmin)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvBoiThuong
+            // cboTrangThaiTimKiem
             // 
-            this.dgvBoiThuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBoiThuong.Location = new System.Drawing.Point(460, 51);
-            this.dgvBoiThuong.Name = "dgvBoiThuong";
-            this.dgvBoiThuong.RowHeadersWidth = 62;
-            this.dgvBoiThuong.RowTemplate.Height = 28;
-            this.dgvBoiThuong.Size = new System.Drawing.Size(240, 150);
-            this.dgvBoiThuong.TabIndex = 0;
+            this.cboTrangThaiTimKiem.FormattingEnabled = true;
+            this.cboTrangThaiTimKiem.Items.AddRange(new object[] {
+            "Tất cả",
+            "Chờ duyệt",
+            "Đã duyệt",
+            "Từ chối"});
+            this.cboTrangThaiTimKiem.Location = new System.Drawing.Point(12, 274);
+            this.cboTrangThaiTimKiem.Name = "cboTrangThaiTimKiem";
+            this.cboTrangThaiTimKiem.Size = new System.Drawing.Size(121, 28);
+            this.cboTrangThaiTimKiem.TabIndex = 0;
             // 
-            // cboLocLoaiBH
+            // btnTimKiem
             // 
-            this.cboLocLoaiBH.FormattingEnabled = true;
-            this.cboLocLoaiBH.Location = new System.Drawing.Point(116, 61);
-            this.cboLocLoaiBH.Name = "cboLocLoaiBH";
-            this.cboLocLoaiBH.Size = new System.Drawing.Size(121, 28);
-            this.cboLocLoaiBH.TabIndex = 1;
+            this.btnTimKiem.Location = new System.Drawing.Point(12, 324);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(88, 38);
+            this.btnTimKiem.TabIndex = 1;
+            this.btnTimKiem.Text = "tim kiem";
+            this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // dgvAdmin
+            // 
+            this.dgvAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdmin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colTenGoi});
+            this.dgvAdmin.Location = new System.Drawing.Point(2, 2);
+            this.dgvAdmin.Name = "dgvAdmin";
+            this.dgvAdmin.RowHeadersWidth = 62;
+            this.dgvAdmin.RowTemplate.Height = 28;
+            this.dgvAdmin.Size = new System.Drawing.Size(1273, 241);
+            this.dgvAdmin.TabIndex = 2;
+            this.dgvAdmin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdmin_CellClick);
+            // 
+            // colTenGoi
+            // 
+            this.colTenGoi.DataPropertyName = "TenGoi";
+            this.colTenGoi.HeaderText = "Tên Bảo Hiểm";
+            this.colTenGoi.MinimumWidth = 8;
+            this.colTenGoi.Name = "colTenGoi";
+            this.colTenGoi.Width = 150;
+            // 
+            // lblMaYeuCau
+            // 
+            this.lblMaYeuCau.AutoSize = true;
+            this.lblMaYeuCau.Location = new System.Drawing.Point(225, 289);
+            this.lblMaYeuCau.Name = "lblMaYeuCau";
+            this.lblMaYeuCau.Size = new System.Drawing.Size(51, 20);
+            this.lblMaYeuCau.TabIndex = 4;
+            this.lblMaYeuCau.Text = "label2";
+            // 
+            // rtxtChiTiet
+            // 
+            this.rtxtChiTiet.Location = new System.Drawing.Point(349, 274);
+            this.rtxtChiTiet.Name = "rtxtChiTiet";
+            this.rtxtChiTiet.Size = new System.Drawing.Size(100, 96);
+            this.rtxtChiTiet.TabIndex = 5;
+            this.rtxtChiTiet.Text = "";
+            // 
+            // picAnhAdmin
+            // 
+            this.picAnhAdmin.Location = new System.Drawing.Point(498, 309);
+            this.picAnhAdmin.Name = "picAnhAdmin";
+            this.picAnhAdmin.Size = new System.Drawing.Size(100, 50);
+            this.picAnhAdmin.TabIndex = 6;
+            this.picAnhAdmin.TabStop = false;
+            // 
+            // txtLyDoTuChoi
+            // 
+            this.txtLyDoTuChoi.Location = new System.Drawing.Point(730, 289);
+            this.txtLyDoTuChoi.Name = "txtLyDoTuChoi";
+            this.txtLyDoTuChoi.Size = new System.Drawing.Size(100, 26);
+            this.txtLyDoTuChoi.TabIndex = 7;
             // 
             // btnDuyet
             // 
-            this.btnDuyet.Location = new System.Drawing.Point(116, 111);
+            this.btnDuyet.Location = new System.Drawing.Point(654, 347);
             this.btnDuyet.Name = "btnDuyet";
-            this.btnDuyet.Size = new System.Drawing.Size(75, 23);
-            this.btnDuyet.TabIndex = 2;
-            this.btnDuyet.Text = "button1";
+            this.btnDuyet.Size = new System.Drawing.Size(100, 49);
+            this.btnDuyet.TabIndex = 8;
+            this.btnDuyet.Text = "duyet";
             this.btnDuyet.UseVisualStyleBackColor = true;
             this.btnDuyet.Click += new System.EventHandler(this.btnDuyet_Click);
             // 
-            // FormAdmin
+            // btnTuChoi
+            // 
+            this.btnTuChoi.Location = new System.Drawing.Point(654, 402);
+            this.btnTuChoi.Name = "btnTuChoi";
+            this.btnTuChoi.Size = new System.Drawing.Size(110, 36);
+            this.btnTuChoi.TabIndex = 9;
+            this.btnTuChoi.Text = "tu choi";
+            this.btnTuChoi.UseVisualStyleBackColor = true;
+            this.btnTuChoi.Click += new System.EventHandler(this.btnTuChoi_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(665, 295);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 20);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Lý Do";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // FormAdminbt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1278, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnTuChoi);
             this.Controls.Add(this.btnDuyet);
-            this.Controls.Add(this.cboLocLoaiBH);
-            this.Controls.Add(this.dgvBoiThuong);
-            this.Name = "FormAdmin";
-            this.Text = "FormAdmin";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBoiThuong)).EndInit();
+            this.Controls.Add(this.txtLyDoTuChoi);
+            this.Controls.Add(this.picAnhAdmin);
+            this.Controls.Add(this.rtxtChiTiet);
+            this.Controls.Add(this.lblMaYeuCau);
+            this.Controls.Add(this.dgvAdmin);
+            this.Controls.Add(this.btnTimKiem);
+            this.Controls.Add(this.cboTrangThaiTimKiem);
+            this.Name = "FormAdminbt";
+            this.Text = "FormAdminbt";
+            this.Load += new System.EventHandler(this.FormAdminbt_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdmin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAnhAdmin)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvBoiThuong;
-        private System.Windows.Forms.ComboBox cboLocLoaiBH;
+        private System.Windows.Forms.ComboBox cboTrangThaiTimKiem;
+        private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.DataGridView dgvAdmin;
+        private System.Windows.Forms.Label lblMaYeuCau;
+        private System.Windows.Forms.RichTextBox rtxtChiTiet;
+        private System.Windows.Forms.PictureBox picAnhAdmin;
+        private System.Windows.Forms.TextBox txtLyDoTuChoi;
         private System.Windows.Forms.Button btnDuyet;
+        private System.Windows.Forms.Button btnTuChoi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTenGoi;
+        private System.Windows.Forms.Label label3;
     }
 }

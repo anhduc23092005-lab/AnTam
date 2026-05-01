@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnTam_BaoHiem.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,76 +8,97 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AnTam_BaoHiem.Controllers;
 
-namespace AnTam_BaoHiem
+
+namespace AnTam_BaoHiem.Views
 {
-    public partial class FormAdmin : Form
+    public partial class FormAdminbt : Form
     {
-        BoiThuongController _controller = new BoiThuongController();
-        DataTable _dtYeuCau; // Lưu trữ dữ liệu gốc để lọc
-        public FormAdmin()
+        private BoiThuongController _controller;
+        private int maYeuCauDuocChon = -1;
+
+        public FormAdminbt()
         {
             InitializeComponent();
-            LoadData();
-            LoadComboFilter();
-        }
-        private void LoadComboFilter()
-        {
-            // Thêm các lựa chọn vào ComboBox lọc
-            cboLocLoaiBH.Items.Add("--- Tất cả ---");
-            cboLocLoaiBH.Items.AddRange(new string[] { "Xe cộ", "Thất nghiệp", "Tai nạn", "Nhân thọ", "Y tế" });
-            cboLocLoaiBH.SelectedIndex = 0;
+            _controller = new BoiThuongController();
+            cboTrangThaiTimKiem.SelectedIndex = 0; // Chọn "Tất cả" mặc định
+            LoadGirdView("Tất cả");
         }
 
-        private void LoadData()
+        private void LoadGirdView(string trangThai)
         {
-            _dtYeuCau = _controller.LayDanhSachChoDuyetAdmin();
-            dgvBoiThuong.DataSource = _dtYeuCau;
-
-            // Tùy chỉnh tiêu đề cột cho đẹp
-            dgvBoiThuong.Columns["MaBT"].HeaderText = "Mã số";
-            dgvBoiThuong.Columns["HoTen"].HeaderText = "Khách hàng";
-            dgvBoiThuong.Columns["TenGoi"].HeaderText = "Loại bảo hiểm";
-            dgvBoiThuong.Columns["SoTienYeuCau"].HeaderText = "Số tiền (VNĐ)";
+            dgvAdmin.DataSource = _controller.LọcYeuCauAdmin(trangThai);
         }
-        // Sự kiện lọc dữ liệu khi chọn ComboBox
-        private void cboLocLoaiBH_SelectedIndexChanged(object sender, EventArgs e)
+        private void FormAdminbt_Load(object sender, EventArgs e)
         {
-            if (_dtYeuCau == null) return;
-
-            string filterValue = cboLocLoaiBH.SelectedItem.ToString();
-
-            if (filterValue == "--- Tất cả ---")
+            // Đảm bảo ComboBox đã có giá trị mặc định trước khi load
+            if (cboTrangThaiTimKiem.Items.Count > 0)
             {
-                dgvBoiThuong.DataSource = _dtYeuCau;
+                cboTrangThaiTimKiem.SelectedIndex = 0; // Chọn "Tất cả"
             }
-            else
+            LoadGirdView("Tất cả");
+        }
+
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            LoadGirdView(cboTrangThaiTimKiem.SelectedItem.ToString());
+        }
+
+        private void dgvAdmin_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
             {
-                // Sử dụng RowFilter để lọc trực tiếp trên DataTable mà không cần truy vấn lại Database
-                DataView dv = _dtYeuCau.DefaultView;
-                dv.RowFilter = string.Format("TenGoi LIKE '%{0}%'", filterValue);
-                dgvBoiThuong.DataSource = dv;
+                DataGridViewRow row = dgvAdmin.Rows[e.RowIndex];
+                maYeuCauDuocChon = Convert.ToInt32(row.Cells["MaYeuCau"].Value);
+                rtxtChiTiet.Text = row.Cells["NoiDungYeuCau"].Value.ToString();
+
+                string duongDanAnh = row.Cells["AnhMinhChung"].Value?.ToString();
+                if (!string.IsNullOrEmpty(duongDanAnh) && System.IO.File.Exists(duongDanAnh))
+                {
+                    picAnhAdmin.Image = Image.FromFile(duongDanAnh);
+                    picAnhAdmin.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    picAnhAdmin.Image = null; // Khách hàng không gửi ảnh hoặc mất file
+                }
+
+                txtLyDoTuChoi.Text = row.Cells["LyDoTuChoi"].Value?.ToString();
             }
         }
 
         private void btnDuyet_Click(object sender, EventArgs e)
         {
-            if (dgvBoiThuong.CurrentRow != null)
+            if (maYeuCauDuocChon == -1) return;
+            if (_controller.CapNhatTrangThai(maYeuCauDuocChon, "Đã duyệt", null))
             {
-                int maBT = Convert.ToInt32(dgvBoiThuong.CurrentRow.Cells["MaBT"].Value);
-
-                DialogResult dr = MessageBox.Show("Xác nhận chi trả bồi thường cho yêu cầu này?", "Xác nhận", MessageBoxButtons.YesNo);
-
-                if (dr == DialogResult.Yes)
-                {
-                    if (_controller.DuyetBoiThuong(maBT, "Đã chi trả", "Đã duyệt bởi Admin"))
-                    {
-                        MessageBox.Show("Đã cập nhật trạng thái thành công.");
-                        LoadData(); // Tải lại danh sách
-                    }
-                }
+                MessageBox.Show("Đã duyệt yêu cầu!");
+                LoadGirdView(cboTrangThaiTimKiem.SelectedItem.ToString());
             }
         }
+
+        private void btnTuChoi_Click(object sender, EventArgs e)
+        {
+            if (maYeuCauDuocChon == -1) return;
+            if (string.IsNullOrWhiteSpace(txtLyDoTuChoi.Text))
+            {
+                MessageBox.Show("Vui lòng nhập lý do từ chối!");
+                return;
+            }
+
+            if (_controller.CapNhatTrangThai(maYeuCauDuocChon, "Từ chối", txtLyDoTuChoi.Text))
+            {
+                MessageBox.Show("Đã từ chối yêu cầu!");
+                LoadGirdView(cboTrangThaiTimKiem.SelectedItem.ToString());
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-}
+
+        
+    }

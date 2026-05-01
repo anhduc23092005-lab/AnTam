@@ -7,62 +7,74 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
 using AnTam_BaoHiem.Controllers;
-using AnTam_BaoHiem.Models;
 
-namespace AnTam_BaoHiem
+namespace AnTam_BaoHiem.Views
 {
     public partial class FormKhachHangbt : Form
     {
-        BoiThuongController _controller = new BoiThuongController();
-        int _maKH_HienTai = 1; // Giả sử ID khách hàng đăng nhập là 1
+        private BoiThuongController _controller;
+        private string duongDanAnhDaChon = "";
+        private int maKhachHangHienTai = 2; // Giả sử Mã KH đăng nhập là 2 (theo dữ liệu mẫu)
+
         public FormKhachHangbt()
         {
             InitializeComponent();
-            LoadHopDong();
+            _controller = new BoiThuongController();
+            LoadDanhSach();
         }
-        private void LoadHopDong()
-        {
-            // Lấy các hợp đồng đang hiệu lực của khách hàng
-            DataTable dt = _controller.LayDanhSachHopDongHieuLuc(_maKH_HienTai);
 
-            cboHopDong.DataSource = dt;
-            cboHopDong.DisplayMember = "TenGoi"; // Hiển thị tên gói (Xe cộ, Y tế...)
-            cboHopDong.ValueMember = "MaHD";    // Giá trị ẩn là mã hợp đồng
+        private void LoadDanhSach()
+        {
+            dgvYeuCauKH.DataSource = _controller.LayYeuCauKhachHang(maKhachHangHienTai);
+        }
+
+        private void btnChonAnh_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    duongDanAnhDaChon = ofd.FileName;
+                    picMinhChung.Image = Image.FromFile(duongDanAnhDaChon);
+                    picMinhChung.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+            }
         }
 
         private void btnGuiYeuCau_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtLyDo.Text) || string.IsNullOrEmpty(txtSoTien.Text))
+            if (string.IsNullOrEmpty(txtMaHD.Text) || string.IsNullOrEmpty(rtxtNoiDung.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ lý do và số tiền!");
+                MessageBox.Show("Vui lòng nhập Mã HĐ và Nội dung!");
                 return;
             }
 
-            int maHD = (int)cboHopDong.SelectedValue;
-            decimal soTien = decimal.Parse(txtSoTien.Text);
-            string lyDo = txtLyDo.Text;
-
-            bool thanhCong = _controller.GuiYeuCauBoiThuong(maHD, soTien, lyDo);
-
-            if (thanhCong)
+            // Copy ảnh vào thư mục dự án (Tùy chọn, để quản lý file tốt hơn)
+            string savedPath = "";
+            if (!string.IsNullOrEmpty(duongDanAnhDaChon))
             {
-                MessageBox.Show("Gửi yêu cầu bồi thường thành công! Vui lòng chờ Admin duyệt.");
-                txtLyDo.Clear();
-                txtSoTien.Clear();
+                string folder = Path.Combine(Application.StartupPath, "Uploads");
+                if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+                string fileName = DateTime.Now.Ticks + Path.GetExtension(duongDanAnhDaChon);
+                savedPath = Path.Combine(folder, fileName);
+                File.Copy(duongDanAnhDaChon, savedPath);
             }
-            else
+
+            bool result = _controller.GuiYeuCau(int.Parse(txtMaHD.Text), rtxtNoiDung.Text, savedPath);
+            if (result)
             {
-                MessageBox.Show("Có lỗi xảy ra, vui lòng thử lại.");
+                MessageBox.Show("Gửi yêu cầu thành công!");
+                LoadDanhSach();
             }
         }
-        public int MaKH_HienTai;
 
-        public FormKhachHangbt(int maKH) // Thêm tham số nhận vào
+        private void FormKhachHangbt_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-            this.MaKH_HienTai = maKH;
-            // Bây giờ bạn có thể dùng MaKH_HienTai để thực hiện mua bảo hiểm hoặc bồi thường
+
         }
     }
 }

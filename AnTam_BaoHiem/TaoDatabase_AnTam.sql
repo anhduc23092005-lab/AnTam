@@ -5,6 +5,11 @@ CREATE TABLE TaiKhoan (
     LoaiTaiKhoan NVARCHAR(20) -- 'Admin' hoặc 'KhachHang'
 );
 
+INSERT INTO TaiKhoan VALUES
+('admin','admin123','Admin'),
+('user1','123456','KhachHang'),
+('user2','123456','KhachHang');
+
 -- 2. Bảng Khách hàng (Lưu thông tin cá nhân)
 CREATE TABLE KhachHang (
     MaKH INT IDENTITY(1,1) PRIMARY KEY,
@@ -15,6 +20,10 @@ CREATE TABLE KhachHang (
     SoDienThoai NVARCHAR(15),
     Email NVARCHAR(100)
 );
+
+INSERT INTO KhachHang (TenDangNhap, HoTen, CCCD, SoDienThoai, Email) VALUES
+('user1', N'Nguyễn Văn A', '111111111111', '0901111111', 'vana@gmail.com'),
+('user2', N'Trần Thị B', '222222222222', '0902222222', 'thib@gmail.com');
 
 -- 3. Bảng Gói bảo hiểm (Xe cộ, Thất nghiệp, Tai nạn, Nhân thọ, Doanh nghiệp)
 CREATE TABLE GoiBaoHiem (
@@ -43,3 +52,4 @@ CREATE TABLE BoiThuong (
     NgayGui DATETIME DEFAULT GETDATE(),
     TrangThai NVARCHAR(50) -- 'Đang xử lý', 'Đã duyệt', 'Từ chối'
 );
+
