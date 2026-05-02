@@ -15,9 +15,9 @@ namespace AnTam_BaoHiem
         [STAThread]
         static void Main()
         {
-             Application.Run(new AnTam_BaoHiem.Views.frmAdminMain());
-            // Thay số 1 đầu tiên thành số 2 (Vì ông aNHDUC có MaKH = 2)
-            Application.Run(new AnTam_BaoHiem.Views.frmThanhToanKhachHang(2, 1));
+             //Application.Run(new AnTam_BaoHiem.Views.frmAdminMain());
+           
+            Application.Run(new AnTam_BaoHiem.Views.frmThanhToanKhachHang(3, 2));
         }
     }
 }

@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(25)))), ((int)(((byte)(53)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(46)))));
             this.panel1.Controls.Add(this.btndangxuat);
             this.panel1.Controls.Add(this.btnthanhtoan);
             this.panel1.Controls.Add(this.btntaikhoan);

@@ -7,7 +7,7 @@ namespace AnTam_BaoHiem.Helpers
     public static class DatabaseHelper
     {
         // Đã dán cứng chuỗi kết nối từ App.config của sếp vào đây luôn cho gọn!
-        private static string connectionString = @"Data Source=PCCUADUC;Initial Catalog=AnTam_DB;Integrated Security=True";
+        private static string connectionString = @"Data Source=PCCUADUC;Initial Catalog=AnTamBaoHiem;Integrated Security=True";
 
         public static SqlConnection GetConnection()
         {
