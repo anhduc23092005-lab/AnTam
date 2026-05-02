@@ -1,106 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using AnTam_BaoHiem.Helpers;
-using AnTam_BaoHiem.Models;
 
 namespace AnTam_BaoHiem.Controllers
 {
     public class BoiThuongController
     {
-        // 1. Lấy danh sách hợp đồng còn hiệu lực để khách hàng chọn bồi thường
-        public DataTable LayDanhSachHopDongHieuLuc(int maKH)
+        private string connectionString = @"Data Source=DESKTOP-FC4HE69;Initial Catalog=AnTam_DB;Integrated Security=True";
+
+     
+        public bool GuiYeuCau(int maHD, string noiDung, string duongDanAnh)
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string sql = @"SELECT hd.MaHD, gbh.TenGoi, hd.NgayHetHan 
-                               FROM HopDong hd 
-                               JOIN GoiBaoHiem gbh ON hd.MaGoi = gbh.MaGoi 
-                               WHERE hd.MaKH = @MaKH AND hd.TrangThai = N'Đang hiệu lực'";
+                string query = "INSERT INTO BoiThuong (MaHD, NoiDungYeuCau, TrangThai, AnhMinhChung) VALUES (@MaHD, @NoiDung, N'Chờ duyệt', @Anh)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaHD", maHD);
+                cmd.Parameters.AddWithValue("@NoiDung", noiDung);
+                cmd.Parameters.AddWithValue("@Anh", string.IsNullOrEmpty(duongDanAnh) ? (object)DBNull.Value : duongDanAnh);
 
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@MaKH", maKH);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+        public DataTable LayYeuCauKhachHang(int maKH)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT bt.MaYeuCau, bt.MaHD, g.TenGoi, bt.NoiDungYeuCau, bt.NgayGui, bt.TrangThai, bt.LyDoTuChoi 
+                                 FROM BoiThuong bt 
+                                 INNER JOIN HopDong hd ON bt.MaHD = hd.MaHD 
+                                 INNER JOIN GoiBaoHiem g ON hd.MaGoi = g.MaGoi
+                                 WHERE hd.MaKH = @MaKH ORDER BY bt.NgayGui DESC";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@MaKH", maKH);
+                DataTable dt = new DataTable();
                 da.Fill(dt);
+                return dt;
             }
-            return dt;
         }
-
-        // 2. Gửi yêu cầu bồi thường (Xử lý logic theo loại gói)
-        public bool GuiYeuCauBoiThuong(int maHD, decimal soTienYC, string lyDo)
+        public DataTable LọcYeuCauAdmin(string trangThai)
         {
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                string query = @"SELECT bt.*, g.TenGoi 
+                                 FROM BoiThuong bt 
+                                 INNER JOIN HopDong hd ON bt.MaHD = hd.MaHD 
+                                 INNER JOIN GoiBaoHiem g ON hd.MaGoi = g.MaGoi";
+
+                if (!string.IsNullOrEmpty(trangThai) && trangThai != "Tất cả")
                 {
-                    conn.Open();
-                    string sql = @"INSERT INTO BoiThuong (MaHD, NgayYeuCau, SoTienYeuCau, LyDo, TinhTrang) 
-                                   VALUES (@MaHD, @NgayYeuCau, @SoTien, @LyDo, N'Đang xử lý')";
-
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@MaHD", maHD);
-                    cmd.Parameters.AddWithValue("@NgayYeuCau", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@SoTien", soTienYC);
-                    cmd.Parameters.AddWithValue("@LyDo", lyDo);
-
-                    return cmd.ExecuteNonQuery() > 0;
+                    query += " WHERE bt.TrangThai = @TrangThai";
                 }
-            }
-            catch (Exception ex)
-            {
-                // Bạn có thể log lỗi ở đây
-                return false;
-            }
-        }
+                query += " ORDER BY bt.NgayGui DESC";
 
-        // 3. Lấy danh sách chờ duyệt cho Admin (Phân loại theo 5 loại gói)
-        public DataTable LayDanhSachChoDuyetAdmin()
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
-            {
-                // Query kết hợp 3 bảng để Admin thấy đủ thông tin phân loại
-                string sql = @"SELECT bt.MaBT, kh.HoTen, gbh.TenGoi, bt.SoTienYeuCau, bt.NgayYeuCau, bt.LyDo
-                               FROM BoiThuong bt
-                               JOIN HopDong hd ON bt.MaHD = hd.MaHD
-                               JOIN KhachHang kh ON hd.MaKH = kh.MaKH
-                               JOIN GoiBaoHiem gbh ON hd.MaGoi = gbh.MaGoi
-                               WHERE bt.TinhTrang = N'Đang xử lý'
-                               ORDER BY gbh.TenGoi ASC"; // Sắp xếp theo loại gói để Admin dễ quản lý
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                if (!string.IsNullOrEmpty(trangThai) && trangThai != "Tất cả")
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@TrangThai", trangThai);
+                }
+                DataTable dt = new DataTable();
                 da.Fill(dt);
+                return dt;
             }
-            return dt;
         }
-
-        // 4. Duyệt hoặc Từ chối bồi thường
-        public bool DuyetBoiThuong(int maBT, string trangThaiMoi, string ghiChuAdmin)
+        public bool CapNhatTrangThai(int maYeuCau, string trangThai, string lyDo)
         {
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlConnection conn = DatabaseHelper.GetConnection())
-                {
-                    conn.Open();
-                    // Cập nhật trạng thái và có thể thêm ghi chú nếu database của bạn có cột GhiChu
-                    string sql = @"UPDATE BoiThuong 
-                                   SET TinhTrang = @TrangThai 
-                                   WHERE MaBT = @MaBT";
+                string query = "UPDATE BoiThuong SET TrangThai = @TrangThai, LyDoTuChoi = @LyDo WHERE MaYeuCau = @MaYeuCau";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@TrangThai", trangThai);
+                cmd.Parameters.AddWithValue("@LyDo", string.IsNullOrEmpty(lyDo) ? (object)DBNull.Value : lyDo);
+                cmd.Parameters.AddWithValue("@MaYeuCau", maYeuCau);
 
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@TrangThai", trangThaiMoi); // 'Đã chi trả' hoặc 'Từ chối'
-                    cmd.Parameters.AddWithValue("@MaBT", maBT);
-
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
-            catch
-            {
-                return false;
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
     }

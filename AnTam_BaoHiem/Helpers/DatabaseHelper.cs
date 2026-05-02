@@ -1,20 +1,52 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace AnTam_BaoHiem.Helpers
 {
     public static class DatabaseHelper
     {
-        // Đã dán cứng chuỗi kết nối từ App.config của sếp vào đây luôn cho gọn!
-        private static string connectionString = @"Data Source=PCCUADUC;Initial Catalog=AnTamBaoHiem;Integrated Security=True";
+        // Lấy từ App.config (vừa an toàn, vừa trỏ chuẩn về PCCUADUC của sếp do nãy mình đã gộp chuẩn App.config)
+        private static string connectionString = ConfigurationManager.ConnectionStrings["AnTamConn"].ConnectionString;
 
         public static SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);
         }
 
-        // Hàm lấy dữ liệu dạng bảng (DataTable)
+        // Hàm của nhóm sếp
+        public static bool CheckConnection()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    return conn.State == ConnectionState.Open;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Hàm của nhóm sếp (đã sửa cái lỗi NotImplementedException của máy sếp)
+        public static DataTable GetData(string query)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = GetConnection())
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    da.Fill(dt);
+                }
+            }
+            return dt;
+        }
+
+        // Hàm sếp viết thêm cho Form Thanh Toán
         public static DataTable ExecuteQuery(string query)
         {
             using (SqlConnection conn = GetConnection())
@@ -32,7 +64,7 @@ namespace AnTam_BaoHiem.Helpers
             }
         }
 
-        // Hàm lấy 1 giá trị duy nhất (dùng cho SUM, COUNT...)
+        // Hàm sếp viết thêm cho Form Thanh Toán
         public static object ExecuteScalar(string query)
         {
             using (SqlConnection conn = GetConnection())
@@ -43,11 +75,6 @@ namespace AnTam_BaoHiem.Helpers
                     return cmd.ExecuteScalar();
                 }
             }
-        }
-
-        internal static object GetData(string query)
-        {
-            throw new NotImplementedException();
         }
     }
 }
