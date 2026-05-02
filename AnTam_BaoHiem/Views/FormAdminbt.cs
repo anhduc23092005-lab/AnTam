@@ -31,7 +31,6 @@ namespace AnTam_BaoHiem.Views
         }
         private void FormAdminbt_Load(object sender, EventArgs e)
         {
-            // Đảm bảo ComboBox đã có giá trị mặc định trước khi load
             if (cboTrangThaiTimKiem.Items.Count > 0)
             {
                 cboTrangThaiTimKiem.SelectedIndex = 0; // Chọn "Tất cả"
@@ -61,7 +60,7 @@ namespace AnTam_BaoHiem.Views
                 }
                 else
                 {
-                    picAnhAdmin.Image = null; // Khách hàng không gửi ảnh hoặc mất file
+                    picAnhAdmin.Image = null; 
                 }
 
                 txtLyDoTuChoi.Text = row.Cells["LyDoTuChoi"].Value?.ToString();
@@ -92,11 +91,6 @@ namespace AnTam_BaoHiem.Views
                 MessageBox.Show("Đã từ chối yêu cầu!");
                 LoadGirdView(cboTrangThaiTimKiem.SelectedItem.ToString());
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 using System.IO;
 using AnTam_BaoHiem.Controllers;
 
@@ -17,7 +16,7 @@ namespace AnTam_BaoHiem.Views
     {
         private BoiThuongController _controller;
         private string duongDanAnhDaChon = "";
-        private int maKhachHangHienTai = 2; // Giả sử Mã KH đăng nhập là 2 (theo dữ liệu mẫu)
+        private int maKhachHangHienTai = 2; 
 
         public FormKhachHangbt()
         {
@@ -52,8 +51,6 @@ namespace AnTam_BaoHiem.Views
                 MessageBox.Show("Vui lòng nhập Mã HĐ và Nội dung!");
                 return;
             }
-
-            // Copy ảnh vào thư mục dự án (Tùy chọn, để quản lý file tốt hơn)
             string savedPath = "";
             if (!string.IsNullOrEmpty(duongDanAnhDaChon))
             {

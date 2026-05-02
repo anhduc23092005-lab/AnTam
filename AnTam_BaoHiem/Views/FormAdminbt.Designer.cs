@@ -148,7 +148,6 @@
             this.label3.Size = new System.Drawing.Size(50, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "Lý Do";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label1
             // 

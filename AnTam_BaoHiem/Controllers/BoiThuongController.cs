@@ -10,10 +10,9 @@ namespace AnTam_BaoHiem.Controllers
 {
     public class BoiThuongController
     {
-        // Giữ nguyên chuỗi kết nối đang chạy ngon của bạn
         private string connectionString = @"Data Source=DESKTOP-FC4HE69;Initial Catalog=AnTam_DB;Integrated Security=True";
 
-        // 1. Khách hàng gửi yêu cầu
+     
         public bool GuiYeuCau(int maHD, string noiDung, string duongDanAnh)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -28,13 +27,10 @@ namespace AnTam_BaoHiem.Controllers
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-
-        // 2. Lấy danh sách yêu cầu cho Khách hàng (ĐÃ THÊM TÊN GÓI)
         public DataTable LayYeuCauKhachHang(int maKH)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                // Join 3 bảng: BoiThuong -> HopDong -> GoiBaoHiem để lấy TenGoi
                 string query = @"SELECT bt.MaYeuCau, bt.MaHD, g.TenGoi, bt.NoiDungYeuCau, bt.NgayGui, bt.TrangThai, bt.LyDoTuChoi 
                                  FROM BoiThuong bt 
                                  INNER JOIN HopDong hd ON bt.MaHD = hd.MaHD 
@@ -47,13 +43,10 @@ namespace AnTam_BaoHiem.Controllers
                 return dt;
             }
         }
-
-        // 3. Admin lấy tất cả yêu cầu (ĐÃ THÊM TÊN GÓI)
         public DataTable LọcYeuCauAdmin(string trangThai)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                // Join 3 bảng để lấy TenGoi cho Admin xem
                 string query = @"SELECT bt.*, g.TenGoi 
                                  FROM BoiThuong bt 
                                  INNER JOIN HopDong hd ON bt.MaHD = hd.MaHD 
@@ -75,8 +68,6 @@ namespace AnTam_BaoHiem.Controllers
                 return dt;
             }
         }
-
-        // 4. Admin duyệt/từ chối yêu cầu
         public bool CapNhatTrangThai(int maYeuCau, string trangThai, string lyDo)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
